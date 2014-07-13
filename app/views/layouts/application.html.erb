@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TalkSignup</title>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <h1>Triangle.rb Lightning Talk Signups <%= link_to "Sign Up", new_sign_ups_path, class: 'btn btn-lg btn-primary' %></h1>
+      <% flash.each do |type, message| %>
+        <div class="alert <%= bootstrap_class_for(type) %> fade in">
+          <button class="close" data-dismiss="alert">×</button>
+          <% if message.is_a? String %>
+            <%= message %>
+          <% else %>
+            <ul>
+              <% message.each do |message| %>
+                <li><%= message.html_safe %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

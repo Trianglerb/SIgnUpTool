@@ -1,0 +1,18 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Subject Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sign_ups.each do |sign_up| %>
+      <tr>
+        <td><%= sign_up.first_name %>
+        <td><%= sign_up.last_name %>
+        <td><%= sign_up.subject %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
