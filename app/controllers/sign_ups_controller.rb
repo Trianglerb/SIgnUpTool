@@ -8,13 +8,18 @@ class SignUpsController < ApplicationController
   end
 
   def create
-    @sign_up = SignUp.new(sign_up_params)
-    if @sign_up.save
-      flash[:success] = 'Successfully Signed Up'
+    if SignUp.count >= SignUp::CAP
+      flash[:notice] = "The sign up cap of #{SignUp::CAP} has been reached"
       redirect_to root_path
     else
-      flash[:error] = @sign_up.errors.full_messages
-      render :new
+      @sign_up = SignUp.new(sign_up_params)
+      if @sign_up.save
+        flash[:success] = 'Successfully Signed Up'
+        redirect_to root_path
+      else
+        flash[:error] = @sign_up.errors.full_messages
+        render :new
+      end
     end
   end
 
